@@ -1,0 +1,3 @@
+<body>
+    Hola {{$nombre}}
+</body>
