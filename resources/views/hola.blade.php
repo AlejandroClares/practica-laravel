@@ -1,3 +1,0 @@
-<body>
-    Hola {{$nombre}}
-</body>
