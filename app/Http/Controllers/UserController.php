@@ -38,11 +38,19 @@ class UserController extends Controller
         $user = new Usuarios();
         $data["datosUsuario"] = $user->find($id); 
         $data["idUsuario"] = $id;
-        return view('User/edit');
+        return view('User/edit', $data);
     }
 
-    public function update(){
-
+    public function update($id, Request $r){
+        $user = Usuarios::find($id);
+        $user->nombre = $r->nombre;
+        $user->apellidos = $r->apellidos;
+        $user->email = $r->email;
+        $user->nick = $r->nick;
+        $user->passwd = $r->password;
+        $user->tipo = $r->tipo;
+        $user->update();
+        return view('User/index');
     }
 
     public function destroy(){
