@@ -34,8 +34,11 @@ class UserController extends Controller
         return view('User/index');
     }
 
-    public function edit(){
-
+    public function edit($id){
+        $user = new Usuarios();
+        $data["datosUsuario"] = $user->find($id); 
+        $data["idUsuario"] = $id;
+        return view('User/edit');
     }
 
     public function update(){
