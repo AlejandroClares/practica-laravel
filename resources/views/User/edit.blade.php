@@ -2,8 +2,9 @@
 @section('title', "Laravel - Editar usuario")
 
 @section('main')
-    <form action="{{route('user.update', $idUsuario)}}" >
-        <input type="hidden" name="_method" value="PATCH">
+    <form action="{{ route('user.update', $datosUsuario->id) }}" method="post">
+        @csrf
+        @method('PATCH')
         Nick:<br>
         <input type="text" name="nick" value="{{$datosUsuario->nick}}"><br>
         Contraseña:<br>

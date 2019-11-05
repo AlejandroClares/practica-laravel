@@ -14,8 +14,9 @@ class UserController extends Controller
         return view('User/index', $data);
     }
 
-    public function show(){
-
+    public function show($id){
+        $data['datosUsuario'] = Usuarios::find($id);
+        return view('User/show', $data);
     }
 
     public function create(){
@@ -31,13 +32,12 @@ class UserController extends Controller
         $user->passwd = $r->password;
         $user->tipo = $r->tipo;
         $user->save();
-        return view('User/index');
+        return redirect()->route('user.index');
     }
 
     public function edit($id){
         $user = new Usuarios();
         $data["datosUsuario"] = $user->find($id); 
-        $data["idUsuario"] = $id;
         return view('User/edit', $data);
     }
 
@@ -49,11 +49,12 @@ class UserController extends Controller
         $user->nick = $r->nick;
         $user->passwd = $r->password;
         $user->tipo = $r->tipo;
-        $user->update();
-        return view('User/index');
+        $user->save();
+        return redirect()->route('user.index');
     }
 
-    public function destroy(){
-
+    public function destroy($id){
+        Usuarios::destroy($id);
+        return redirect()->route('user.index');
     }
 }

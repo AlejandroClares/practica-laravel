@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('usuario', 'UserController@index')->name('user.index'); 
 Route::post('usuario', 'UserController@store')->name('user.store'); 
 Route::get('usuario/crear', 'UserController@create')->name('user.create');
-Route::get('usuario/{id}', 'UserController@show')->name('user.show'); 
-Route::patch('usuario/{id}', 'UserController@update')->name('user.update'); 
+Route::get('usuario/{id}', 'UserController@show')->name('user.show');
+Route::patch('usuario/{id}', 'UserController@update')->name('user.update');
 Route::delete('usuario/{id}', 'UserController@destroy')->name('user.destroy'); 
 Route::get('usuario/{id}/editar', 'UserController@edit')->name('user.edit');

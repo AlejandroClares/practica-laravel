@@ -11,6 +11,7 @@
             <th>Apellidos</th>
             <th>Email</th>
             <th>tipo</th>
+            <th colspan="2">Herramientas</th>
         </thead>
         <tbody>
             @foreach ($listaUsuarios as $user)
@@ -21,7 +22,8 @@
                 <td>{{$user->apellidos}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->tipo}}</td>
-                <td><a href="{{route('user.edit', ['id' => $user->id])}}">Modificar</a></td>
+                <td><a href="{{ route('user.edit', $user->id) }}">Modificar</a></td>
+                <td><a href="{{ route('user.destroy', $user->id) }}">Eliminar</a></td>
             </tr>
             @endforeach
         </tbody>
