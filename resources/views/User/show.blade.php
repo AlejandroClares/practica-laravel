@@ -7,7 +7,7 @@
 
     <form action="{{ route('user.destroy', $datosUsuario->id) }}" method="post">
         @csrf
-        @method('destroy')
+        @method('DELETE')
         Nombre:<br>
         <input type="text" value="{{ $datosUsuario->nombre }}" disabled><br>
         Apellidos:<br>
@@ -21,6 +21,6 @@
         Tipo:<br> 
         <input type="text" value="{{ $datosUsuario->tipo }}" disabled><br>
         <br>
-        <input type="button" value="Eliminar usuario">
+        <input type="submit" value="Eliminar usuario">
     </form>
 @endsection

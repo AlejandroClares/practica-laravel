@@ -54,6 +54,7 @@ class UserController extends Controller
     }
 
     public function destroy($id){
+        echo "Hola!";
         Usuarios::destroy($id);
         return redirect()->route('user.index');
     }
