@@ -8,7 +8,7 @@
         Nick<br> 
         <input type="text" name="nick"><br>
         Contraseña<br>
-        <input type="password" name="password"><br>
+        <input type="password" name="passwd"><br>
         Nombre<br>
         <input type="text" name="nombre"><br>
         Apellidos<br>

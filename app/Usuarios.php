@@ -8,5 +8,5 @@ class Usuarios extends Model
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'id';
-    protected $fillable = array('id', 'nombre', 'apellidos', 'email', 'nick', 'passwd'); 
+    protected $fillable = array('nick', 'passwd', 'nombre', 'apellidos', 'email'); 
 }

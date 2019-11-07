@@ -8,7 +8,7 @@
         Nick:<br>
         <input type="text" name="nick" value="{{$datosUsuario->nick}}"><br>
         Contraseña:<br>
-        <input type="text" name="password" value="{{$datosUsuario->passwd}}"><br>
+        <input type="text" name="passwd" value="{{$datosUsuario->passwd}}"><br>
         Nombre:<br>
         <input type="text" name="nombre" value="{{$datosUsuario->nombre}}"><br>
         Apellidos:<br>

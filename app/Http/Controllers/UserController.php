@@ -9,8 +9,7 @@ class UserController extends Controller
 {
     
     public function index(){
-        $user = new Usuarios();
-        $data['listaUsuarios'] = $user->all();
+        $data['listaUsuarios'] = Usuarios::all();
         return view('user/index', $data);
     }
 
@@ -24,36 +23,24 @@ class UserController extends Controller
     }
 
     public function store(Request $r){
-        $user = new Usuarios();
-        $user->nombre = $r->nombre;
-        $user->apellidos = $r->apellidos;
-        $user->email = $r->email;
-        $user->nick = $r->nick;
-        $user->passwd = $r->password;
+        $user = new Usuarios($r->all());
         $user->save();
         return redirect()->route('user.index');
     }
 
     public function edit($id){
-        $user = new Usuarios();
-        $data["datosUsuario"] = $user->find($id); 
+        $data["datosUsuario"] = Usuarios::find($id); 
         return view('user/edit', $data);
     }
 
     public function update($id, Request $r){
         $user = Usuarios::find($id);
-        $user->nombre = $r->nombre;
-        $user->apellidos = $r->apellidos;
-        $user->email = $r->email;
-        $user->nick = $r->nick;
-        $user->passwd = $r->password;
-        $user->tipo = $r->tipo;
+        $user->fill($r->all());
         $user->save();
         return redirect()->route('user.index');
     }
 
     public function destroy($id){
-        echo "Hola!";
         Usuarios::destroy($id);
         return redirect()->route('user.index');
     }
