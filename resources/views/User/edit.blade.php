@@ -15,8 +15,6 @@
         <input type="text" name="apellidos" value="{{$datosUsuario->apellidos}}"><br>
         Email:<br>
         <input type="text" name="email" value="{{$datosUsuario->email}}"><br>
-        Tipo:<br>
-        <input type="text" name="tipo" value="{{$datosUsuario->tipo}}"><br>
         <input type="submit" value="Modificar">
     </form>
 @endsection

@@ -18,8 +18,6 @@
         <input type="text" value="{{ $datosUsuario->nick }}" disabled><br>
         Contraseña:<br>
         <input type="text" value="{{ $datosUsuario->passwd }}" disabled><br>
-        Tipo:<br> 
-        <input type="text" value="{{ $datosUsuario->tipo }}" disabled><br>
         <br>
         <input type="submit" value="Eliminar usuario">
     </form>

@@ -3,6 +3,7 @@
 @section('title', "Laravel - Usuarios")
 
 @section('main')
+    <a href="{{route('user.create')}}">Insertar nuevo usuario</a><br>
     <table border="1px">
         <thead>
             <th>Usuario</th>

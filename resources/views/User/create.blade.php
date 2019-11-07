@@ -15,8 +15,6 @@
         <input type="text" name="apellidos"><br>
         Email<br>
         <input type="text" name="email"><br>
-        Tipo<br>
-        <input type="text" name="tipo"><br>
         <input type="submit" value="Guardar">
     </form>
 @endsection

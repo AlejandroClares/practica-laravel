@@ -11,16 +11,16 @@ class UserController extends Controller
     public function index(){
         $user = new Usuarios();
         $data['listaUsuarios'] = $user->all();
-        return view('User/index', $data);
+        return view('user/index', $data);
     }
 
     public function show($id){
         $data['datosUsuario'] = Usuarios::find($id);
-        return view('User/show', $data);
+        return view('user/show', $data);
     }
 
     public function create(){
-        return view('User/create');
+        return view('user/create');
     }
 
     public function store(Request $r){
@@ -30,7 +30,6 @@ class UserController extends Controller
         $user->email = $r->email;
         $user->nick = $r->nick;
         $user->passwd = $r->password;
-        $user->tipo = $r->tipo;
         $user->save();
         return redirect()->route('user.index');
     }
@@ -38,7 +37,7 @@ class UserController extends Controller
     public function edit($id){
         $user = new Usuarios();
         $data["datosUsuario"] = $user->find($id); 
-        return view('User/edit', $data);
+        return view('user/edit', $data);
     }
 
     public function update($id, Request $r){
