@@ -36,8 +36,9 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $movie = new Pelicula();
-        $request->
+        $movie = new Peliculas($request->all());
+        $movie->save();
+        return redirect()->route('movie.index');
     }
 
     /**
@@ -48,7 +49,8 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        $data["datosPelicula"] = Peliculas::find($id);
+        return view('movie/show', $data);
     }
 
     /**
@@ -59,7 +61,8 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['datosPelicula'] = Peliculas::find($id);
+        return view('movie/edit', $data);
     }
 
     /**
@@ -71,7 +74,10 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $movie = Peliculas::find($id);
+        $movie->fill($request->all());
+        $movie->save();
+        return redirect()->route('movie.index');
     }
 
     /**
@@ -82,6 +88,7 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Peliculas::destroy($id);
+        return redirect()->route('movie.index');
     }
 }

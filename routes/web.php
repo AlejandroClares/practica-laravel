@@ -32,3 +32,4 @@ Route::get('pelicula/{id}', 'MovieController@show')->name('movie.show');
 Route::patch('pelicula/{id}', 'MovieController@update')->name('movie.update');
 Route::delete('pelicula/{id}', 'MovieController@destroy')->name('movie.destroy'); 
 Route::get('pelicula/{id}/editar', 'MovieController@edit')->name('movie.edit');
+    
