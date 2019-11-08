@@ -3,7 +3,7 @@
 @section('title', "Laravel - Ver pelicula")
 
 @section('main')
-    <h3>Datos de usuario</h3>
+    <h3>Datos de pelicula</h3>
 
     <form action="{{ route('movie.destroy', $datosPelicula->id) }}" method="post">
         @csrf

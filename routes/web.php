@@ -31,10 +31,9 @@ Route::get('pelicula/crear', 'MovieController@create')->name('movie.create');
 Route::get('pelicula/{id}', 'MovieController@show')->name('movie.show');
 Route::patch('pelicula/{id}', 'MovieController@update')->name('movie.update');
 Route::delete('pelicula/{id}', 'MovieController@destroy')->name('movie.destroy'); 
-Route::get('pelicula/{id}/editar', 'MovieController@edit')->name('movie.edit');
-    
-// Generos REST
+Route::get('pelicula/{id}/editar', 'MovieController@edit')->name('movie.edit'); 
 
+// Generos REST
 Route::get('genero', 'GenderController@index')->name('gender.index'); 
 Route::post('genero', 'GenderController@store')->name('gender.store'); 
 Route::get('genero/crear', 'GenderController@create')->name('gender.create');
