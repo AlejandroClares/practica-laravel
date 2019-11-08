@@ -13,7 +13,8 @@ class GenderController extends Controller
      */
     public function index()
     {
-        //
+        $data['datosGenero'] = Generos::all();
+        // return view('gender/index');  Falta vista
     }
 
     /**
@@ -23,7 +24,7 @@ class GenderController extends Controller
      */
     public function create()
     {
-        //
+        // return view('gender/create'); Falta vista
     }
 
     /**
@@ -34,7 +35,9 @@ class GenderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gender = new Genero($request->all());
+        $gender->save();
+        return redirect()->route('gender.index');
     }
 
     /**
@@ -45,7 +48,8 @@ class GenderController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['datosGenero'] = Genero::find($id);
+        // return view('gender/show'); Falta vista
     }
 
     /**
@@ -56,7 +60,8 @@ class GenderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['datosGenero'] = Genero::find($id);
+        return view('gender/edit');
     }
 
     /**
@@ -68,7 +73,10 @@ class GenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gender = Genero::find($id);
+        $gender->fill($request->all());
+        $gender->save();
+        return redirect()->route('gender.index');
     }
 
     /**
@@ -79,6 +87,7 @@ class GenderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gender::destroy($id);
+        return redirect()->route('gender.index');
     }
 }
