@@ -12,8 +12,8 @@
         Duracion:<br>
         <input type="text" name="duracion" value="{{$datosPelicula->duracion}}"><br>
 
-        Generos:<br>
-        <select name="generos" multiple>
+        Genero:<br>
+        <select name="generos">
             @foreach ($datosGeneros as $genero)
             <option value="{{$genero->id}}">{{$genero->nombre}}</option>        
             @endforeach

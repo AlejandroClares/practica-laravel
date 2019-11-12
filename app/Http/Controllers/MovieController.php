@@ -82,12 +82,12 @@ class MovieController extends Controller
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
         $movie->save();
-        foreach ($request->generos as $valor) {
-            $gender = new Gender();
-            $gender->generos_id = $valor;
-            $gender->peliculas_id = $id;
-            $gender->save();
-        }
+
+        $gender = Generos::find($id);
+        $gender->generos_id = $request->generos;
+        $gender->peliculas_id = $id;
+        $gender->save();
+
         return redirect()->route('movie.index');
     }
 
@@ -100,6 +100,7 @@ class MovieController extends Controller
     public function destroy($id)
     {
         Peliculas::destroy($id);
+        Generos::destroy($id);
         return redirect()->route('movie.index');
     }
 }
