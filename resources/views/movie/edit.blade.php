@@ -11,10 +11,15 @@
         <input type="text" name="nombre" value="{{$datosPelicula->nombre}}"><br>
         Duracion:<br>
         <input type="text" name="duracion" value="{{$datosPelicula->duracion}}"><br>
+
+        Generos:<br>
+        <select name="generos" multiple>
+            @foreach ($datosGeneros as $genero)
+            <option value="{{$genero->id}}">{{$genero->nombre}}</option>        
+            @endforeach
+        </select><br>
         Año:<br>
         <input type="text" name="anyo" value="{{$datosPelicula->anyo}}"><br>
-        Genero:<br>
-        <input type="text" name="genero" value="{{$datosPelicula->genero}}"><br>
         <input type="submit" value="Modificar">
     </form>
 @endsection

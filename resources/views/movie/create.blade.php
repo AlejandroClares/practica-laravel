@@ -13,8 +13,6 @@
         <input type="number" name="duracion"><br>
         Año<br> 
         <input type="number" name="anyo"><br>
-        Genero<br> 
-        <input type="text" name="genero"><br>
         <input type="submit" value="Guardar">
     </form>
 @endsection

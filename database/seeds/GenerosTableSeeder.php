@@ -14,5 +14,9 @@ class GenerosTableSeeder extends Seeder
         DB::table("generos")->insert([
             'nombre' => 'Acción'
         ]);
+
+        DB::table("generos")->insert([
+            'nombre' => 'Terror'
+        ]);
     }
 }

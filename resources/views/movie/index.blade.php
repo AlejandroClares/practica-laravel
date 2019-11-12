@@ -20,7 +20,6 @@
                 <td>{{$movie->nombre}}</td>
                 <td>{{$movie->duracion}}</td>
                 <td>{{$movie->anyo}}</td>
-                <td>{{$movie->genero}}</td>
                 <td><a href="{{ route('movie.edit', $movie->id) }}">Modificar</a></td>
                 <td><a href="{{ route('movie.destroy', $movie->id) }}">Ver</a></td>
             </tr>

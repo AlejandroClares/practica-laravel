@@ -16,8 +16,10 @@
         <input type="text" value="{{ $datosPelicula->duracion }}" disabled><br>
         Año:<br>
         <input type="text" value="{{ $datosPelicula->anyo }}" disabled><br>
-        Genero:<br>
-        <input type="text" value="{{ $datosPelicula->genero }}" disabled><br>
+        Generos:<br>
+        @foreach ($datosGenero as $genero)
+        <input type="text" value="{{ $genero->nombre }}" disabled><br>
+        @endforeach
         <br>
         <input type="submit" value="Eliminar usuario">
     </form>

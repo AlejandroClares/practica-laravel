@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+//Models
 use App\Peliculas;
+use App\Generos;
 
 class MovieController extends Controller
 {
@@ -50,6 +53,7 @@ class MovieController extends Controller
     public function show($id)
     {
         $data["datosPelicula"] = Peliculas::find($id);
+        $data["datosGenero"] = Peliculas::find($id)->generos;
         return view('movie/show', $data);
     }
 
@@ -62,6 +66,7 @@ class MovieController extends Controller
     public function edit($id)
     {
         $data['datosPelicula'] = Peliculas::find($id);
+        $data['datosGeneros'] = Generos::all();
         return view('movie/edit', $data);
     }
 
@@ -77,6 +82,12 @@ class MovieController extends Controller
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
         $movie->save();
+        foreach ($request->generos as $valor) {
+            $gender = new Gender();
+            $gender->generos_id = $valor;
+            $gender->peliculas_id = $id;
+            $gender->save();
+        }
         return redirect()->route('movie.index');
     }
 

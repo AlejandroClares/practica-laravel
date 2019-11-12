@@ -18,8 +18,7 @@ class PeliculasTableSeeder extends Seeder
                 'portada' => $portada,
                 'nombre' => $nombre,
                 'duracion' => '90',
-                'anyo' => '1990',
-                'genero' => 'Acción'
+                'anyo' => '1990'
             ]);
         }
     }
