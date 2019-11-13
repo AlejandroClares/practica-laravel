@@ -82,6 +82,13 @@ class MovieController extends Controller
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
         $movie->save();
+
+        // foreach ($request->generos as $genero_id) {
+        //     $movie->generos()->insert([
+        //         'generos_id' => $genero_id,
+        //         'peliculas_id' => $id
+        //     ]);  
+        // }
         $movie->generos()->attach($request->generos);
         return redirect()->route('movie.index');
     }
@@ -95,7 +102,6 @@ class MovieController extends Controller
     public function destroy($id)
     {
         Peliculas::destroy($id);
-        Generos::destroy($id);
         return redirect()->route('movie.index');
     }
 }
