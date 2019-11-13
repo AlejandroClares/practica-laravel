@@ -82,12 +82,7 @@ class MovieController extends Controller
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
         $movie->save();
-
-        $gender = Generos::find($id);
-        $gender->generos_id = $request->generos;
-        $gender->peliculas_id = $id;
-        $gender->save();
-
+        $movie->generos()->attach($request->generos);
         return redirect()->route('movie.index');
     }
 

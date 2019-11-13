@@ -43,5 +43,4 @@ Route::resource('movie', 'MovieController');
 // Route::patch('genero/{id}', 'GenderController@update')->name('gender.update');
 // Route::delete('genero/{id}', 'GenderController@destroy')->name('gender.destroy'); 
 // Route::get('genero/{id}/editar', 'GenderController@edit')->name('gender.edit');
-
 Route::resource('gender', 'GenderController');
