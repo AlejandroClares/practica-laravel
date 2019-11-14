@@ -28,7 +28,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view("movie/create");
+        $data['datosGeneros'] = Generos::all();
+        return view("movie/create", $data);
     }
 
     /**
@@ -41,6 +42,7 @@ class MovieController extends Controller
     {
         $movie = new Peliculas($request->all());
         $movie->save();
+        $movie->generos()->attach($request->generos);
         return redirect()->route('movie.index');
     }
 
@@ -66,6 +68,7 @@ class MovieController extends Controller
     public function edit($id)
     {
         $data['datosPelicula'] = Peliculas::find($id);
+        $data['generosPelicula'] = $data['datosPelicula']->generos;
         $data['datosGeneros'] = Generos::all();
         return view('movie/edit', $data);
     }
@@ -81,8 +84,8 @@ class MovieController extends Controller
     {
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
+        $movie->generos()->sync($request->generos);
         $movie->save();
-        $movie->generos()->attach($request->generos);
         return redirect()->route('movie.index');
     }
 
@@ -94,8 +97,8 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
+        Peliculas::generos()->detach();
         Peliculas::destroy($id);
-        Generos::destroy($id);
         return redirect()->route('movie.index');
     }
 }

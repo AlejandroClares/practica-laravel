@@ -4,13 +4,12 @@
 
 @section('main')
     <a href="{{route('movie.create')}}">Insertar nueva pelicula</a><br>
-    <table border="1px">
+    <!-- <table border="1px">
         <thead>
             <th>Portada</th>
             <th>Nombre</th>
             <th>Duracion</th>
             <th>Año</th>
-            <th>Genero</th>
             <th colspan="2">Acciones</th>
         </thead>
         <tbody>
@@ -25,6 +24,17 @@
             </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> -->
+        @foreach ($datosPeliculas as $movie)
+            <article class="movie">
+                <div class="containerPortada">
+                    <img class="portada" src="{{$movie->portada}}">
+                </div>
+                <div class="infoMovie">
+                    <p>{{$movie->nombre}}</p>
+                    <a href="{{ route('movie.edit', $movie->id) }}" class="actionMovies">Modificar</a>
+                    <a href="{{ route('movie.destroy', $movie->id) }}" class="actionMovies">Ver</a>
+                </div>
+            </article>
+        @endforeach
 @endsection
-

@@ -15,7 +15,19 @@
         Genero:<br>
         <select name="generos[]" multiple>
             @foreach ($datosGeneros as $genero)
-            <option value="{{$genero->id}}">{{$genero->nombre}}</option>        
+                {{-- Muestra los generos que tiene esta pelicula seleccionados --}}
+                {{ $genderMovie = false }}
+                @foreach ($generosPelicula as $generoPelicula)    
+                    @if ($genero->id == $generoPelicula->id)
+                        <option value="{{$genero->id}}" selected="selected">{{$genero->nombre}}</option>
+                        {{ $genderMovie = true }}
+                        @break
+                    @endif
+                @endforeach
+                {{-- Si no tiene el genero, lo muestra sin seleccionar --}}
+                @if (!$genderMovie)
+                    <option value="{{$genero->id}}">{{$genero->nombre}}</option>
+                @endif    
             @endforeach
         </select><br>
         Año:<br>
