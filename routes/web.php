@@ -33,6 +33,7 @@ Route::resource('user', 'UserController');
 // Route::patch('pelicula/{id}', 'MovieController@update')->name('movie.update');
 // Route::delete('pelicula/{id}', 'MovieController@destroy')->name('movie.destroy'); 
 // Route::get('pelicula/{id}/editar', 'MovieController@edit')->name('movie.edit'); 
+Route::get('movie/delete/{id}', 'MovieController@destroy')->name('movie.delete');
 Route::resource('movie', 'MovieController');
 
 // Generos REST
