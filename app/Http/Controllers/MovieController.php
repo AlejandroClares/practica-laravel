@@ -97,9 +97,9 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //Peliculas::generos()->detach();
-        //Peliculas::destroy($id);
-        //return redirect()->route('movie.index');
+        $peli = Peliculas::find($id);
+        $peli->generos()->detach();
+        Peliculas::destroy($id);
         echo "1";
     }
 }

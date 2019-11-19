@@ -1,19 +1,19 @@
 $(function() {
     $(".delete").click(function(){
+        var id = $(this).attr("name");
+        var div = $("div[id="+id+"]");
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
+            if(this.readyState == 4 && this.status == 200){ 
                 if (xhttp.responseText == 1) {
-                    alert("funciono!" + xhttp.responseText)
+                    $("[id="+id+"]").remove();
                 } else {
-                    alert("nO FUNCIONO " + xhttp.responseText)
+                    alert("Algo fallo!");
                 }
             }
         }
-        var id = $(this).attr("id");
-        var direccion = "http://localhost:3000/movie/delete/"+id;
-        //alert("Direccion: " + direccion);
         
+        var direccion = "http://localhost:3000/movie/delete/"+id;
         xhttp.open("GET", direccion, true);
         xhttp.send();
         
