@@ -6,17 +6,18 @@
     <a href="{{route('movie.create')}}">Insertar nueva pelicula</a><br>
     
         @foreach ($datosPeliculas as $movie)
-            <article class="movie" id="{{ $movie->id }}">
+            <article class="movie">
                 <div class="containerPortada">
                     <a href="{{ route('movie.show', $movie->id) }}">
                     <img class="portada" src="{{$movie->portada}}">
                     </a>
                 </div>
                 <div class="infoMovie">
-                    <p>{{$movie->nombre}}</p>
+                    <div class="containerTitle">
+                        <a href="{{ route('movie.show', $movie->id) }}" class="linkTitle">{{ $movie->nombre }}</a>
+                    </div>
                     <a href="{{ route('movie.edit', $movie->id) }}" class="actionMovies">Modificar</a>
-                    <a class="actionMovies delete" name="{{ $movie->id }}" >Eliminar</a>
-                    <!-- <button name="{{ $movie->id }}">Eliminar</button> -->
+                    <a id="{{ $movie->id }}" class="actionMovies delete" >Eliminar</a>
                 </div>
             </article>
         @endforeach

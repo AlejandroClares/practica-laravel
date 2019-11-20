@@ -84,8 +84,8 @@ class MovieController extends Controller
     {
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
-        $movie->generos()->sync($request->generos);
         $movie->save();
+        $movie->generos()->sync($request->generos);
         return redirect()->route('movie.index');
     }
 

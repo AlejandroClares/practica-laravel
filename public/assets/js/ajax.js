@@ -1,12 +1,12 @@
 $(function() {
     $(".delete").click(function(){
-        var id = $(this).attr("name");
-        var div = $("div[id="+id+"]");
+        var domElement = $(this); 
+        var id = $(this).attr("id");
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){ 
                 if (xhttp.responseText == 1) {
-                    $("[id="+id+"]").remove();
+                    $(domElement).parent().parent().remove();
                 } else {
                     alert("Algo fallo!");
                 }
