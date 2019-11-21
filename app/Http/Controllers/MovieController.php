@@ -29,7 +29,7 @@ class MovieController extends Controller
     public function create()
     {
         $data['datosGeneros'] = Generos::all();
-        return view("movie/create", $data);
+        return view("movie/form", $data);
     }
 
     /**
@@ -70,7 +70,7 @@ class MovieController extends Controller
         $data['datosPelicula'] = Peliculas::find($id);
         $data['generosPelicula'] = $data['datosPelicula']->generos;
         $data['datosGeneros'] = Generos::all();
-        return view('movie/edit', $data);
+        return view('movie/form', $data);
     }
 
     /**

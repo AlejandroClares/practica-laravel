@@ -2,7 +2,7 @@
 @section('title', "Laravel - Editar pelicula")
 
 @section('main')
-    <form action="{{ route('movie.update', $datosPelicula->id) }}" method="post">
+    {{-- <form action="{{ route('movie.update', $datosPelicula->id) }}" method="post">
         @csrf
         @method('PATCH')
         Portada:<br>
@@ -14,18 +14,18 @@
 
         Genero:<br>
         <select name="generos[]" multiple>
-            @foreach ($datosGeneros as $genero)
+            @foreach ($datosGeneros as $genero) --}}
                 {{-- Muestra los generos que tiene esta pelicula seleccionados --}}
-                {{ $genderMovie = false }}
+                {{-- {{ $genderMovie = false }}
                 @foreach ($generosPelicula as $generoPelicula)    
                     @if ($genero->id == $generoPelicula->id)
                         <option value="{{$genero->id}}" selected="selected">{{$genero->nombre}}</option>
                         {{ $genderMovie = true }}
                         @break
                     @endif
-                @endforeach
+                @endforeach --}}
                 {{-- Si no tiene el genero, lo muestra sin seleccionar --}}
-                @if (!$genderMovie)
+                {{-- @if (!$genderMovie)
                     <option value="{{$genero->id}}">{{$genero->nombre}}</option>
                 @endif    
             @endforeach
@@ -33,5 +33,5 @@
         Año:<br>
         <input type="text" name="anyo" value="{{$datosPelicula->anyo}}"><br>
         <input type="submit" value="Modificar">
-    </form>
+    </form> --}}
 @endsection

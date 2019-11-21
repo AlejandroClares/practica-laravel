@@ -87,3 +87,71 @@ a {
     text-decoration: none;
 }
 
+/*---------- ARTICULOS Pagina show de movie ----------*/
+article .showContainerMovieImage {
+    float: left;
+    height: 400px;
+    width: 25%;
+    margin: 5px;
+}
+
+article .showContainerMovieImage img{
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+article .showContainerMovieInfo {
+    float: left;
+    margin: 5px;
+    padding: 0 20px 0 20px;
+}
+
+article .showContainerMovieInfo span {
+    font-weight: bold;
+}
+
+/*---------- ARTICULOS Página form de movie ----------*/
+article .formContainerMovie {
+    background: #e0e0e0;
+    margin: 50px auto;
+    width: 40%;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px grey;
+}
+
+article .formContainerMovie input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+article .formContainerMovie select {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+article .formContainerMovie form {
+    margin: 0px;
+}
+
+article .formContainerMovie .formNumberMovie {
+    float: left;
+    width: 45%;
+    margin-right: 10px;
+}
+
+article .formContainerMovie .formSubmitMovie {
+    margin-top: 20px;
+    background: #a0a0a0;
+}
