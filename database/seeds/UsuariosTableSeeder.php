@@ -11,16 +11,11 @@ class UsuariosTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 10; $i++){
-            $nick = "usuario".($i+1);
-            $email = $nick."@gmail.com";
-            DB::table("usuarios")->insert([
-                'nick' => $nick,
-                'passwd' => '1234',
-                'nombre' => 'Usuario',
-                'apellidos' => 'Ape Usuario',
-                'email' => $email
-            ]);
-        }
+        
+        DB::table("usuarios")->insert([
+            'nombre' => 'Admin',
+            'passwd' => '1234',
+            'email' => 'admin@gmail.com'
+        ]);
     }
 }
