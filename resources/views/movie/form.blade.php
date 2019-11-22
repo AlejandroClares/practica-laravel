@@ -4,14 +4,24 @@
 @section('main')
     <article>
         <div class="formContainerMovie">
+            {{-- Selecciona la cabecera del formulario, dependiendo si es para modificar o anadir --}}
             @isset($datosPelicula)
                 <form action="{{ route('movie.update', $datosPelicula->id) }}" method="post">    
                 @method('PATCH')
             @else
                 <form action="{{ route('movie.store') }}" method="post">
-                
             @endisset
 
+            {{-- Muestra los errores de validacion --}}
+            @if ($errors->any())
+                <div class="showFormErrors">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+                </div>
+            @endif
+                
+                {{-- Todos los campos seran rellenados si se encuentran datos de una pelicula --}}
                 @csrf
                 <label for="portada">Portada</label>
                 <input type="text" id="portada" name="portada" value="{{$datosPelicula->portada ?? ''}}"><br>

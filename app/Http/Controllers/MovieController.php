@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 //Models
@@ -17,6 +16,7 @@ class MovieController extends Controller
      */
     public function index()
     {
+        // Se obtienen todas las peliculas
         $data['datosPeliculas'] = Peliculas::all();
         return view("movie/index", $data);
     }
@@ -28,6 +28,7 @@ class MovieController extends Controller
      */
     public function create()
     {
+        // Se obtienen todos los generos.
         $data['datosGeneros'] = Generos::all();
         return view("movie/form", $data);
     }
@@ -40,8 +41,20 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        // Se valida el formulario
+        $request->validate([
+            'portada' => 'required',
+            'nombre' => 'required',
+            'duracion' => 'required|numeric',
+            'anyo' => 'required|numeric',
+            'generos' => 'required'
+        ]);
+
+        // Se crea la pelicula y se añaden todos los campos. 
         $movie = new Peliculas($request->all());
         $movie->save();
+
+        // Se crean las tuplas de la tabla intermedia enlazando los generos de la pelicula
         $movie->generos()->attach($request->generos);
         return redirect()->route('movie.index');
     }
@@ -54,6 +67,7 @@ class MovieController extends Controller
      */
     public function show($id)
     {
+        // Se obtiene la pelicula y los generos a los que pertence
         $data["datosPelicula"] = Peliculas::find($id);
         $data["datosGenero"] = Peliculas::find($id)->generos;
         return view('movie/show', $data);
@@ -67,6 +81,7 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
+        // Se obtiene la pelicula, los datos a los que pertenece y todos los generos que existen
         $data['datosPelicula'] = Peliculas::find($id);
         $data['generosPelicula'] = $data['datosPelicula']->generos;
         $data['datosGeneros'] = Generos::all();
@@ -82,9 +97,21 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Se valida el formulario
+        $request->validate([
+            'portada' => 'required',
+            'nombre' => 'required',
+            'duracion' => 'required|numeric',
+            'anyo' => 'required|numeric',
+            'generos' => 'required'
+        ]);
+
+        // Se busca la pelicula a modificar
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
         $movie->save();
+
+        // Se la tabla intermedia que contiene los generos a los que pertenece la pelicula
         $movie->generos()->sync($request->generos);
         return redirect()->route('movie.index');
     }
@@ -97,9 +124,13 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
+        /* Se busca la pelicula, se eliminan los generos y 
+        se eliminan todos los generos a los que pertenece */
         $peli = Peliculas::find($id);
         $peli->generos()->detach();
         Peliculas::destroy($id);
+
+        // Se devuelve 1 para que ajax sepa que a funcionado.
         echo "1";
     }
 }
