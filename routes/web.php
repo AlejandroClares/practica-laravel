@@ -45,3 +45,6 @@ Route::resource('movie', 'MovieController');
 // Route::delete('genero/{id}', 'GenderController@destroy')->name('gender.destroy'); 
 // Route::get('genero/{id}/editar', 'GenderController@edit')->name('gender.edit');
 Route::resource('gender', 'GenderController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
