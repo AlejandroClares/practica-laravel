@@ -1,0 +1,12 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Personas extends Model
+{
+    protected $table = 'personas';
+    protected $primaryKey = 'id';
+    protected $fillable = array('nombre');
+}

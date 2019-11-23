@@ -111,7 +111,7 @@ class MovieController extends Controller
         $movie->fill($request->all());
         $movie->save();
 
-        // Se la tabla intermedia que contiene los generos a los que pertenece la pelicula
+        // Si la tabla intermedia que contiene los generos a los que pertenece la pelicula
         $movie->generos()->sync($request->generos);
         return redirect()->route('movie.index');
     }
@@ -124,8 +124,8 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        /* Se busca la pelicula, se eliminan los generos y 
-        se eliminan todos los generos a los que pertenece */
+        /* Se busca la pelicula y se eliminan todos los
+        generos a los que pertenece. */
         $peli = Peliculas::find($id);
         $peli->generos()->detach();
         Peliculas::destroy($id);

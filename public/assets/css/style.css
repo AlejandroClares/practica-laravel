@@ -74,19 +74,6 @@ body {
     color: yellowgreen;
 }
 
-
-
-/*---------- TABLAS ----------*/
-table {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-/*---------- ENLACES ----------*/
-a {
-    text-decoration: none;
-}
-
 /*---------- ARTICULOS Pagina show de movie ----------*/
 article .showContainerMovieImage {
     float: left;
@@ -124,12 +111,6 @@ article .formContainerMovie {
     box-shadow: 5px 5px grey;
 }
 
-article .formContainerMovie .showFormErrors {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
 article .formContainerMovie input {
     width: 100%;
     padding: 10px;
@@ -160,4 +141,22 @@ article .formContainerMovie .formNumberMovie {
 article .formContainerMovie .formSubmitMovie {
     margin-top: 20px;
     background: #a0a0a0;
+}
+
+/*---------- FORMULARIOS ----------*/
+.showFormErrors {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/*---------- TABLAS ----------*/
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+/*---------- ENLACES ----------*/
+a {
+    text-decoration: none;
 }

@@ -9,7 +9,6 @@ class Peliculas extends Model
     protected $table = 'peliculas';
     protected $primaryKey = 'id';
     protected $fillable = array('id', 'portada', 'nombre', 'duracion', 'anyo');
-    protected $touches = ['generos'];
 
     public function generos(){
         return $this->belongsToMany("App\Generos");
