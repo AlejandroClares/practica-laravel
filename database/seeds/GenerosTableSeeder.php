@@ -11,12 +11,19 @@ class GenerosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("generos")->insert([
-            'nombre' => 'Acción'
-        ]);
-
-        DB::table("generos")->insert([
-            'nombre' => 'Terror'
-        ]);
+        $genres = [
+            'Animación',
+            'Aventura', 
+            'Drama',
+            'Acción',
+            'Suspense',
+            'Crimen',
+            'Ciencia ficción'
+        ];
+        foreach ($genres as $genre) {
+            DB::table("generos")->insert([
+                'nombre' => $genre
+            ]);
+        }
     }
 }

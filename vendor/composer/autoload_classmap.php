@@ -2351,6 +2351,8 @@ return array(
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'Parsedown' => $vendorDir . '/erusev/parsedown/Parsedown.php',
     'PeliculasTableSeeder' => $baseDir . '/database/seeds/PeliculasTableSeeder.php',
+    'PersonasActoresTableSeeder' => $baseDir . '/database/seeds/PersonasActoresTableSeeder.php',
+    'PersonasDirectoresTableSeeder' => $baseDir . '/database/seeds/PersonasDirectoresTableSeeder.php',
     'PersonasTableSeeder' => $baseDir . '/database/seeds/PersonasTableSeeder.php',
     'PharIo\\Manifest\\Application' => $vendorDir . '/phar-io/manifest/src/values/Application.php',
     'PharIo\\Manifest\\ApplicationName' => $vendorDir . '/phar-io/manifest/src/values/ApplicationName.php',

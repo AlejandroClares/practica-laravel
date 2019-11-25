@@ -11,11 +11,34 @@ class PersonasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("personas")->insert([
-            'nombre' => 'Juanito'
-        ]);
-        DB::table("personas")->insert([
-            'nombre' => 'Paco'
-        ]);
+        $person = [
+            'Adrian Grunberg',
+            'Sylvester Stallone',
+            'Paz Vega',
+            'Sergio Peris-Mencheta',
+            'Jon Favreau',
+            'Donald Glover',
+            'Beyoncé',
+            'Seth Rogen',
+            'Todd Phillips',
+            'Joaquin Phoenix',
+            'Robert De Niro',
+            'Zazie Beetz',
+            'Christopher Nolan',
+            'Matthew McConaughey',
+            'Anne Hathaway',
+            'Jessica Chastain',
+            'Mackenzie Foy',
+            'Ang Lee',
+            'Will Smith',
+            'Mary Elizabeth Winstead',
+            'Clive Owen'
+        ];
+        
+        foreach( $person as $persona ){
+            DB::table("personas")->insert([
+                'nombre' => $persona
+            ]);
+        }
     }
 }

@@ -13,4 +13,12 @@ class Peliculas extends Model
     public function generos(){
         return $this->belongsToMany("App\Generos");
     }
+
+    public function directores(){
+        return $this->belongsToMany('App\Personas', 'personas_directores');
+    }
+
+    public function actores(){
+        return $this->belongsToMany('App\Personas', 'personas_actores');
+    }
 }

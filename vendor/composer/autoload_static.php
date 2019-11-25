@@ -2750,6 +2750,8 @@ class ComposerStaticInit1b1e491b2c13f034b95bed8f76fc9259
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'PeliculasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PeliculasTableSeeder.php',
+        'PersonasActoresTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonasActoresTableSeeder.php',
+        'PersonasDirectoresTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonasDirectoresTableSeeder.php',
         'PersonasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonasTableSeeder.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',

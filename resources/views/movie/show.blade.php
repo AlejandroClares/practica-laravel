@@ -11,7 +11,39 @@
             <h2>{{ $datosPelicula->nombre }}</h2>
             <p><span>Duración:</span> {{ $datosPelicula->duracion }} minutos.</p>
             <p><span>Año de estreno:</span> {{ $datosPelicula->anyo }}.</p>
-            {{-- Genera los generos de la siguiente forma -> Genero: Terror, Accion. --}}
+           
+            {{-- 
+            Las listas de directores, actores y generos se generan asi: 
+            "Generos: Terror, Accion, Comedia."    
+            --}}
+
+            {{-- Genera los directores --}}
+            @if(count($datosDirector) > 0)
+                <p><span>Directores:</span> 
+                @for ($i = 0; $i < count($datosDirector)-1; $i++)
+                    {{ $datosDirector[$i]->nombre }},
+                    @if ($i == count($datosDirector)-2)
+                        @break
+                    @endif
+                @endfor
+                {{ $datosDirector[count($datosDirector)-1]->nombre }}.
+                </p>
+            @endif
+
+            {{-- Genera los actores --}}
+            @if(count($datosActor) > 0)
+                <p><span>Actores:</span> 
+                @for ($i = 0; $i < count($datosActor)-1; $i++)
+                    {{ $datosActor[$i]->nombre }},
+                    @if ($i == count($datosActor)-2)
+                        @break
+                    @endif
+                @endfor
+                {{ $datosActor[count($datosActor)-1]->nombre }}.
+                </p>
+            @endif
+
+            {{-- Genera los generos. --}}
             @if(count($datosGenero) > 0)
                 <p><span>Géneros:</span> 
                 @for ($i = 0; $i < count($datosGenero)-1; $i++)

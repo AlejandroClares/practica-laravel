@@ -35,23 +35,68 @@
                     <label for="anyo">Año</label>
                     <input type="number" id="anyo" name="anyo" value="{{$datosPelicula->anyo ?? ''}}"><br>
                 </div>
+                {{-- Lista de generos --}}
                 <label for="genero">Género</label>
-                <select id="genero" name="generos[]" size="2 " multiple>
+                <select id="genero" name="generos[]" size="4" multiple>
                     @foreach ($datosGeneros as $genero)
                         {{-- Muestra los generos que tiene esta pelicula seleccionados --}}
-                        {{ $genderMovie = false }}
+                        {{ $estaEnLista = false }}
                         @isset($generosPelicula)
                             @foreach ($generosPelicula as $generoPelicula)
                                     @if ($genero->id == $generoPelicula->id)
                                         <option value="{{$genero->id}}" selected="selected">{{$genero->nombre}}</option>
-                                        {{ $genderMovie = true }}
+                                        {{ $estaEnLista = true }}
                                         @break
                                     @endif
                             @endforeach
                         @endisset
                         {{-- Si no tiene el genero, lo muestra sin seleccionar --}}
-                        @if (!$genderMovie)
+                        @if (!$estaEnLista)
                             <option value="{{$genero->id}}">{{$genero->nombre}}</option>
+                        @endif    
+                    @endforeach
+                </select><br>
+
+                {{-- Lista de directores --}}
+                <label for="director">Director</label>
+                <select id="director" name="directores[]" size="4 " multiple>
+                    @foreach ($datosPersonas as $director)
+                        {{-- Muestra los directores que tiene esta pelicula seleccionados --}}
+                        {{ $estaEnLista = false }}
+                        @isset($directoresPelicula)
+                            @foreach ($directoresPelicula as $existeDirector)
+                                    @if ($director->id == $existeDirector->id)
+                                        <option value="{{$director->id}}" selected="selected">{{$director->nombre}}</option>
+                                        {{ $estaEnLista = true }}
+                                        @break
+                                    @endif
+                            @endforeach
+                        @endisset
+                        {{-- Si no tiene el director, lo muestra sin seleccionar --}}
+                        @if (!$estaEnLista)
+                            <option value="{{$director->id}}">{{$director->nombre}}</option>
+                        @endif    
+                    @endforeach
+                </select><br>
+                
+                {{-- Lista de actores --}}
+                <label for="actores">Actores</label>
+                <select id="actores" name="actores[]" size="4" multiple>
+                    @foreach ($datosPersonas as $actor)
+                        {{-- Muestra los actores que tiene esta pelicula seleccionados --}}
+                        {{ $estaEnLista = false }}
+                        @isset($actoresPelicula)
+                            @foreach ($actoresPelicula as $existeActor)
+                                    @if ($actor->id == $existeActor->id)
+                                        <option value="{{$actor->id}}" selected="selected">{{$actor->nombre}}</option>
+                                        {{ $estaEnLista = true }}
+                                        @break
+                                    @endif
+                            @endforeach
+                        @endisset
+                        {{-- Si no tiene el actor, lo muestra sin seleccionar --}}
+                        @if (!$estaEnLista)
+                            <option value="{{$actor->id}}">{{$actor->nombre}}</option>
                         @endif    
                     @endforeach
                 </select><br>

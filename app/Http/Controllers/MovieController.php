@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //Models
 use App\Peliculas;
 use App\Generos;
+use App\Personas;
 
 class MovieController extends Controller
 {
@@ -30,6 +31,7 @@ class MovieController extends Controller
     {
         // Se obtienen todos los generos.
         $data['datosGeneros'] = Generos::all();
+        $data['datosPersonas'] = Personas::all();
         return view("movie/form", $data);
     }
 
@@ -47,7 +49,8 @@ class MovieController extends Controller
             'nombre' => 'required',
             'duracion' => 'required|numeric',
             'anyo' => 'required|numeric',
-            'generos' => 'required'
+            'generos' => 'required',
+            'directores' => 'required'
         ]);
 
         // Se crea la pelicula y se añaden todos los campos. 
@@ -56,6 +59,7 @@ class MovieController extends Controller
 
         // Se crean las tuplas de la tabla intermedia enlazando los generos de la pelicula
         $movie->generos()->attach($request->generos);
+        $movie->directores()->attach($request->directores);
         return redirect()->route('movie.index');
     }
 
@@ -68,8 +72,11 @@ class MovieController extends Controller
     public function show($id)
     {
         // Se obtiene la pelicula y los generos a los que pertence
-        $data["datosPelicula"] = Peliculas::find($id);
-        $data["datosGenero"] = Peliculas::find($id)->generos;
+        $peli = Peliculas::find($id);
+        $data["datosPelicula"] = $peli;
+        $data["datosGenero"] = $peli->generos;
+        $data["datosDirector"] = $peli->directores;
+        $data["datosActor"] = $peli->actores;
         return view('movie/show', $data);
     }
 
@@ -82,9 +89,13 @@ class MovieController extends Controller
     public function edit($id)
     {
         // Se obtiene la pelicula, los datos a los que pertenece y todos los generos que existen
-        $data['datosPelicula'] = Peliculas::find($id);
-        $data['generosPelicula'] = $data['datosPelicula']->generos;
+        $peli = Peliculas::find($id);
+        $data['datosPelicula'] = $peli;
+        $data['generosPelicula'] = $peli->generos;
+        $data['directoresPelicula'] = $peli->directores;
+        $data['actoresPelicula'] = $peli->actores;
         $data['datosGeneros'] = Generos::all();
+        $data['datosPersonas'] = Personas::all();
         return view('movie/form', $data);
     }
 
@@ -113,6 +124,8 @@ class MovieController extends Controller
 
         // Si la tabla intermedia que contiene los generos a los que pertenece la pelicula
         $movie->generos()->sync($request->generos);
+        $movie->directores()->sync($request->directores);
+        $movie->actores()->sync($request->actores);
         return redirect()->route('movie.index');
     }
 
@@ -128,6 +141,8 @@ class MovieController extends Controller
         generos a los que pertenece. */
         $peli = Peliculas::find($id);
         $peli->generos()->detach();
+        $peli->directores()->detach();
+        $peli->actores()->detach();
         Peliculas::destroy($id);
 
         // Se devuelve 1 para que ajax sepa que a funcionado.
