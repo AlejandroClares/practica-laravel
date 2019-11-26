@@ -23,6 +23,7 @@ Route::get('/', function () {
 // Route::patch('usuario/{id}', 'UserController@update')->name('user.update');
 // Route::delete('usuario/{id}', 'UserController@destroy')->name('user.destroy'); 
 // Route::get('usuario/{id}/editar', 'UserController@edit')->name('user.edit');
+// Route::get('user/login', 'UserController@logout')->name('user.closeSession');
 Route::resource('user', 'UserController');
 
 // Peliculas REST

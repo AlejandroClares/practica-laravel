@@ -6,19 +6,17 @@
     <a href="{{route('user.create')}}">Insertar nuevo usuario</a><br>
     <table border="1px">
         <thead>
-            <th>Usuario</th>
             <th>Nombre</th>
-            <th>Apellidos</th>
             <th>Email</th>
+            <th>Contraseña</th>
             <th colspan="2">Acciones</th>
         </thead>
         <tbody>
             @foreach ($listaUsuarios as $user)
             <tr>
-                <td>{{$user->nick}}</td>
-                <td>{{$user->nombre}}</td>
-                <td>{{$user->apellidos}}</td>
+                <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>{{$user->password}}</td>
                 <td><a href="{{ route('user.edit', $user->id) }}">Modificar</a></td>
                 <td><a href="{{ route('user.destroy', $user->id) }}">Ver</a></td>
             </tr>

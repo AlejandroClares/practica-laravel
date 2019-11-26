@@ -5,16 +5,12 @@
     <form action="{{ route('user.update', $datosUsuario->id) }}" method="post">
         @csrf
         @method('PATCH')
-        Nick:<br>
-        <input type="text" name="nick" value="{{$datosUsuario->nick}}"><br>
-        Contraseña:<br>
-        <input type="text" name="passwd" value="{{$datosUsuario->passwd}}"><br>
         Nombre:<br>
-        <input type="text" name="nombre" value="{{$datosUsuario->nombre}}"><br>
-        Apellidos:<br>
-        <input type="text" name="apellidos" value="{{$datosUsuario->apellidos}}"><br>
+        <input type="text" name="name" value="{{$datosUsuario->name}}"><br>
         Email:<br>
         <input type="text" name="email" value="{{$datosUsuario->email}}"><br>
+        Contraseña:<br>
+        <input type="text" name="password" value="{{$datosUsuario->passwd}}"><br>
         <input type="submit" value="Modificar">
     </form>
 @endsection

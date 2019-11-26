@@ -10,6 +10,12 @@ use App\Personas;
 
 class MovieController extends Controller
 {
+
+    public function __construct(){
+        // Los invitados solo pueden ver index y show
+        // $this->middleware("guest")->only("index", "show");
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +26,7 @@ class MovieController extends Controller
         // Se obtienen todas las peliculas
         $data['datosPeliculas'] = Peliculas::all();
         return view("movie/index", $data);
+        
     }
 
     /**
