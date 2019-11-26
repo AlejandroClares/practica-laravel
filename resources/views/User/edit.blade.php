@@ -8,9 +8,9 @@
         Nombre:<br>
         <input type="text" name="name" value="{{$datosUsuario->name}}"><br>
         Email:<br>
-        <input type="text" name="email" value="{{$datosUsuario->email}}"><br>
+        <input type="email" name="email" value="{{$datosUsuario->email}}"><br>
         Contraseña:<br>
-        <input type="text" name="password" value="{{$datosUsuario->passwd}}"><br>
+        <input type="text" name="password" value=""><br>
         <input type="submit" value="Modificar">
     </form>
 @endsection

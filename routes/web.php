@@ -23,7 +23,7 @@ Route::get('/', function () {
 // Route::patch('usuario/{id}', 'UserController@update')->name('user.update');
 // Route::delete('usuario/{id}', 'UserController@destroy')->name('user.destroy'); 
 // Route::get('usuario/{id}/editar', 'UserController@edit')->name('user.edit');
-// Route::get('user/login', 'UserController@logout')->name('user.closeSession');
+Route::get('user/login', 'UserController@logout')->name('user.closeSession');
 Route::resource('user', 'UserController');
 
 // Peliculas REST
@@ -45,11 +45,16 @@ Route::resource('movie', 'MovieController');
 // Route::patch('genero/{id}', 'GenderController@update')->name('gender.update');
 // Route::delete('genero/{id}', 'GenderController@destroy')->name('gender.destroy'); 
 // Route::get('genero/{id}/editar', 'GenderController@edit')->name('gender.edit');
+Route::get('gender/modalForm', 'GenderController@modalForm')->name('gender.modalForm');
+Route::post('gender/modalForm/store', 'GenderController@modalFormStore')->name('gender.modalFormStore');
 Route::resource('gender', 'GenderController');
 
 // Personas REST
+Route::get('person/modalForm', 'PersonController@modalForm')->name('person.modalForm');
+Route::post('person/modalForm/store', 'PersonController@modalFormStore')->name('person.modalFormStore');
 Route::resource('person', 'PersonController');
 
 // Rutas de login
+// Auth::routes(['register' => false]);
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

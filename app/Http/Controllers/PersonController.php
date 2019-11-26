@@ -10,6 +10,12 @@ use App\Personas;
 
 class PersonController extends Controller
 {
+
+    public function __construct(){
+        // Solo pueden acceder usuarios autenticados
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -111,5 +117,17 @@ class PersonController extends Controller
         $person = Personas::find($id);
         Personas::destroy($id);
         return redirect()->route('person.index');
+    }
+
+    public function modalForm(){
+        echo view("person.modal.createModal");
+    }
+
+    public function modalFormStore(Request $r){
+        $gender = new Personas();
+        $gender->nombre = $r->nombre;
+        $gender->save();
+        $data["datosPersona"] = Personas::where('nombre', $r->nombre)->get(); 
+        return view('person.modal.refreshPersonList', $data);
     }
 }

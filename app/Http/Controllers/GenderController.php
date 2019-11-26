@@ -7,6 +7,12 @@ use App\Generos;
 
 class GenderController extends Controller
 {
+
+    public function __construct(){
+        // Solo pueden acceder usuarios autenticados
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -90,5 +96,17 @@ class GenderController extends Controller
     {
         Generos::destroy($id);
         return redirect()->route('gender.index');
+    }
+
+    public function modalForm(){
+        echo view("gender.modal.createModal");
+    }
+
+    public function modalFormStore(Request $r){
+        $gender = new Generos();
+        $gender->nombre = $r->nombre;
+        $gender->save();
+        $data["datosGenero"] = Generos::where('nombre', $r->nombre)->get(); 
+        return view('gender.modal.refreshGenderList', $data);
     }
 }

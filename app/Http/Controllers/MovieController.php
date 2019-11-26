@@ -12,8 +12,16 @@ class MovieController extends Controller
 {
 
     public function __construct(){
+        
         // Los invitados solo pueden ver index y show
         // $this->middleware("guest")->only("index", "show");
+
+        /*
+        * CUIDADO
+        * La linea anterior permite entrar a los invitades en ambos metodos
+        * pero bloquea al usuario auth.
+        */
+        
     }
 
     /**
@@ -50,6 +58,7 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        
         // Se valida el formulario
         $request->validate([
             'portada' => 'required',
@@ -77,7 +86,8 @@ class MovieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        
         // Se obtiene la pelicula y los generos a los que pertence
         $peli = Peliculas::find($id);
         $data["datosPelicula"] = $peli;

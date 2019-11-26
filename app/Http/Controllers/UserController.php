@@ -10,6 +10,11 @@ use Auth;
 class UserController extends Controller
 {
     
+    public function __construct(){
+        // Solo pueden acceder usuarios autenticados
+        $this->middleware('auth');
+    }
+
     public function index(){
         $data['listaUsuarios'] = User::all();
         return view('user/index', $data);
@@ -51,6 +56,6 @@ class UserController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('movie.index')
+        return redirect()->route('movie.index');
     }
 }

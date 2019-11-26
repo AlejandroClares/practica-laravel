@@ -8,7 +8,6 @@
         <thead>
             <th>Nombre</th>
             <th>Email</th>
-            <th>Contraseña</th>
             <th colspan="2">Acciones</th>
         </thead>
         <tbody>
@@ -16,7 +15,6 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->password}}</td>
                 <td><a href="{{ route('user.edit', $user->id) }}">Modificar</a></td>
                 <td><a href="{{ route('user.destroy', $user->id) }}">Ver</a></td>
             </tr>
