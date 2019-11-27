@@ -10,10 +10,10 @@
         <div class="formContainerMovie">
             {{-- Selecciona la cabecera del formulario, dependiendo si es para modificar o anadir --}}
             @isset($datosPelicula)
-                <form action="{{ route('movie.update', $datosPelicula->id) }}" method="post">    
+                <form action="{{ route('movie.update', $datosPelicula->id) }}" method="post" enctype="multipart/form-data">    
                 @method('PATCH')
             @else
-                <form action="{{ route('movie.store') }}" method="post">
+                <form action="{{ route('movie.store') }}" method="post" enctype="multipart/form-data">
             @endisset
 
             {{-- Muestra los errores de validacion --}}
@@ -27,10 +27,15 @@
 
                 {{-- Todos los campos seran rellenados si se encuentran datos de una pelicula --}}
                 @csrf
-                <label for="portada">Portada</label>
-                <input type="text" id="portada" name="portada" value="{{$datosPelicula->portada ?? ''}}"><br>
+
+                
+
+                {{-- <label for="portada">Portada</label>
+                <input type="text" id="portada" name="portada" value="{{$datosPelicula->portada ?? ''}}"><br> --}}
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" value="{{$datosPelicula->nombre ?? ''}}"><br>
+                <label for="portada">Portada</label>
+                <input type="file" name="portada"><br>
                 <div class="formNumberMovie">
                     <label for="duracion">Duración</label>
                     <input type="number" id="duracion" name="duracion" value="{{$datosPelicula->duracion ?? ''}}"><br>

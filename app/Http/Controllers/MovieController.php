@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 //Models
 use App\Peliculas;
@@ -16,6 +18,7 @@ class MovieController extends Controller
         // Los invitados solo pueden ver index y show
         // $this->middleware("guest")->only("index", "show");
 
+        $this->middleware("auth")->except("index", "show");
         /*
         * CUIDADO
         * La linea anterior permite entrar a los invitades en ambos metodos
@@ -61,7 +64,7 @@ class MovieController extends Controller
         
         // Se valida el formulario
         $request->validate([
-            'portada' => 'required',
+            // 'portada' => 'required',
             'nombre' => 'required',
             'duracion' => 'required|numeric',
             'anyo' => 'required|numeric',
@@ -71,11 +74,20 @@ class MovieController extends Controller
 
         // Se crea la pelicula y se añaden todos los campos. 
         $movie = new Peliculas($request->all());
+
+        $file = $request->file('portada');
+        $name = $file->getClientOriginalName();
+        $date = date("Y-m-d_H-i-s");
+        $date = $date."-".$name;
+        Storage::disk('portada')->put($date, File::get($file));
+        $movie->portada = $date;
+
         $movie->save();
 
         // Se crean las tuplas de la tabla intermedia enlazando los generos de la pelicula
         $movie->generos()->attach($request->generos);
         $movie->directores()->attach($request->directores);
+        $movie->actores()->attach($request->actores);
         return redirect()->route('movie.index');
     }
 
@@ -137,6 +149,12 @@ class MovieController extends Controller
         // Se busca la pelicula a modificar
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
+        $file = $request->file('portada');
+        $name = $file->getClientOriginalName();
+        $date = date("Y-m-d_H-i-s");
+        $date = $date."-".$name;
+        Storage::disk('portada')->put($date, File::get($file));
+        $movie->portada = $date;
         $movie->save();
 
         // Si la tabla intermedia que contiene los generos a los que pertenece la pelicula
@@ -160,6 +178,7 @@ class MovieController extends Controller
         $peli->generos()->detach();
         $peli->directores()->detach();
         $peli->actores()->detach();
+        Storage::disk('portada')->delete($peli->portada);
         Peliculas::destroy($id);
 
         // Se devuelve 1 para que ajax sepa que a funcionado.

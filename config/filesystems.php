@@ -64,6 +64,12 @@ return [
             'url' => env('AWS_URL'),
         ],
 
-    ],
+        'portada' => [
+            'driver' => 'local',
+            'root' => 'assets/resource/portadas',
+            'visibility' => 'private',
+        ],
 
+    ],
+    
 ];

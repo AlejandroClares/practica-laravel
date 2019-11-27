@@ -11,7 +11,7 @@
             <article class="movie">
                 <div class="containerPortada">
                     <a href="{{ route('movie.show', $movie->id) }}">
-                    <img class="portada" src="{{$movie->portada}}">
+                    <img class="portada" src="/assets/resource/portadas/{{$movie->portada}}">
                     </a>
                 </div>
                 <div class="infoMovie">

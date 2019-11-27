@@ -5,7 +5,7 @@
 @section('main')
     <article>
         <div class="showContainerMovieImage">
-            <img src="{{ $datosPelicula->portada }}">
+            <img src="/assets/resource/portadas/{{ $datosPelicula->portada }}">
         </div>
         <div class="showContainerMovieInfo">
             <h2>{{ $datosPelicula->nombre }}</h2>
