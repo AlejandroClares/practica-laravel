@@ -110,7 +110,7 @@
                         });
                     </script> 
 
-                <select id="genero" name="generos[]" size="4" searchable="Buscar..." multiple>
+                <select id="genero" name="generos[]" size="4" multiple>
                     @foreach ($datosGeneros as $genero)
                         {{-- Muestra los generos que tiene esta pelicula seleccionados --}}
                         {{ $estaEnLista = false }}

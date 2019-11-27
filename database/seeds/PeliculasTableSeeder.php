@@ -20,7 +20,7 @@ class PeliculasTableSeeder extends Seeder
         ]);
 
         DB::table("peliculas")->insert([
-            'portada' => '2019-11-27_11-21-34-joker.jpg',
+            'portada' => '2019-11-27_11-35-25-joker.jpg',
             'nombre' => 'Joker',
             'duracion' => '122',
             'anyo' => '2019'

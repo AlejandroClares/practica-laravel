@@ -64,7 +64,7 @@ class MovieController extends Controller
         
         // Se valida el formulario
         $request->validate([
-            // 'portada' => 'required',
+            'portada' => 'required',
             'nombre' => 'required',
             'duracion' => 'required|numeric',
             'anyo' => 'required|numeric',
