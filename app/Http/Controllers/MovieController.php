@@ -16,14 +16,7 @@ class MovieController extends Controller
     public function __construct(){
         
         // Los invitados solo pueden ver index y show
-        // $this->middleware("guest")->only("index", "show");
-
         $this->middleware("auth")->except("index", "show");
-        /*
-        * CUIDADO
-        * La linea anterior permite entrar a los invitades en ambos metodos
-        * pero bloquea al usuario auth.
-        */
         
     }
 
@@ -64,12 +57,12 @@ class MovieController extends Controller
         
         // Se valida el formulario
         $request->validate([
-            'portada' => 'required',
             'nombre' => 'required',
+            'portada' => 'required|image',
             'duracion' => 'required|numeric',
             'anyo' => 'required|numeric',
-            'generos' => 'required',
-            'directores' => 'required'
+            'directores' => 'required',
+            'generos' => 'required'
         ]);
 
         // Se crea la pelicula y se añaden todos los campos. 
@@ -139,22 +132,26 @@ class MovieController extends Controller
     {
         // Se valida el formulario
         $request->validate([
-            'portada' => 'required',
             'nombre' => 'required',
+            'portada' => 'image',
             'duracion' => 'required|numeric',
             'anyo' => 'required|numeric',
+            'directores' => 'required',
             'generos' => 'required'
         ]);
 
         // Se busca la pelicula a modificar
         $movie = Peliculas::find($id);
         $movie->fill($request->all());
+
         $file = $request->file('portada');
-        $name = $file->getClientOriginalName();
-        $date = date("Y-m-d_H-i-s");
-        $date = $date."-".$name;
-        Storage::disk('portada')->put($date, File::get($file));
-        $movie->portada = $date;
+        if($file != null){
+            $name = $file->getClientOriginalName();
+            $date = date("Y-m-d_H-i-s");
+            $date = $date."-".$name;
+            Storage::disk('portada')->put($date, File::get($file));
+            $movie->portada = $date;
+        }
         $movie->save();
 
         // Si la tabla intermedia que contiene los generos a los que pertenece la pelicula
@@ -178,6 +175,8 @@ class MovieController extends Controller
         $peli->generos()->detach();
         $peli->directores()->detach();
         $peli->actores()->detach();
+        
+        // Elimina la portada almacenada en el servidor
         Storage::disk('portada')->delete($peli->portada);
         Peliculas::destroy($id);
 

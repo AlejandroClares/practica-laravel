@@ -27,22 +27,26 @@
 
                 {{-- Todos los campos seran rellenados si se encuentran datos de una pelicula --}}
                 @csrf
-
-                
-
-                {{-- <label for="portada">Portada</label>
-                <input type="text" id="portada" name="portada" value="{{$datosPelicula->portada ?? ''}}"><br> --}}
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value="{{$datosPelicula->nombre ?? ''}}"><br>
+                <input type="text" id="nombre" name="nombre" required value="{{$datosPelicula->nombre ?? ''}}"><br>
+                {{-- El campo de la portada solo es obligatorio para la insercion, no para la modificacion --}}
                 <label for="portada">Portada</label>
-                <input type="file" name="portada"><br>
+                @isset($datosPelicula)
+                    <input type="file" id="portada" name="portada"><br>
+                @else
+                    <input type="file" id="portada" name="portada" required><br>
+                @endisset
+                <label for="sinopsis">Sinopsis</label>
+                <textarea id="portada" rows="4" maxlength="1000" name="sinopsis" required>{{$datosPelicula->sinopsis ?? ''}}</textarea><br>
+                <label for="url_trailer">Dirección URL del trailer</label>
+                <input type="url" id="url_trailer" name="url_trailer" required value="{{$datosPelicula->url_trailer ?? ''}}"><br>
                 <div class="formNumberMovie">
                     <label for="duracion">Duración</label>
-                    <input type="number" id="duracion" name="duracion" value="{{$datosPelicula->duracion ?? ''}}"><br>
+                    <input type="number" id="duracion" name="duracion" required value="{{$datosPelicula->duracion ?? ''}}"><br>
                 </div>
                 <div class="formNumberMovie">
                     <label for="anyo">Año</label>
-                    <input type="number" id="anyo" name="anyo" value="{{$datosPelicula->anyo ?? ''}}"><br>
+                    <input type="number" id="anyo" name="anyo" required value="{{$datosPelicula->anyo ?? ''}}"><br>
                 </div>
 
                 {{-- Lista de generos --}}
@@ -110,7 +114,7 @@
                         });
                     </script> 
 
-                <select id="genero" name="generos[]" size="4" multiple>
+                <select id="genero" name="generos[]" size="4" required multiple>
                     @foreach ($datosGeneros as $genero)
                         {{-- Muestra los generos que tiene esta pelicula seleccionados --}}
                         {{ $estaEnLista = false }}
@@ -192,7 +196,7 @@
                             });
                         });
                     </script>
-                <select id="director" name="directores[]" size="4 " multiple>
+                <select id="director" name="directores[]" size="4 " required multiple>
                     @foreach ($datosPersonas as $director)
                         {{-- Muestra los directores que tiene esta pelicula seleccionados --}}
                         {{ $estaEnLista = false }}
@@ -214,7 +218,7 @@
                 
                 {{-- Lista de actores --}}
                 <label for="actor">Actores</label>
-                <select id="actor" name="actores[]" size="4" multiple>
+                <select id="actor" name="actores[]" size="4" required multiple>
                     @foreach ($datosPersonas as $actor)
                         {{-- Muestra los actores que tiene esta pelicula seleccionados --}}
                         {{ $estaEnLista = false }}

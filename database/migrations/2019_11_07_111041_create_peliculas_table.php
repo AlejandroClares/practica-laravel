@@ -19,6 +19,8 @@ class CreatePeliculasTable extends Migration
             $table->string("nombre", 100);
             $table->integer("duracion");
             $table->integer("anyo");
+            $table->string("sinopsis", 1000);
+            $table->string("url_trailer", 1000);
             $table->timestamps();
         });
     }
