@@ -11,7 +11,7 @@
             <div class="showContainerMovieInfoSimple">
                 <h2>{{ $datosPelicula->nombre }}</h2>
                 <p><span>Duración:</span> {{ $datosPelicula->duracion }} minutos.</p>
-                <p><span>Año de estreno:</span> {{ $datosPelicula->anyo }}.</p>
+                <p><span>Año de estreno:</span> <a href="{{ route('movie.searchYear', $datosPelicula->anyo) }}"> {{ $datosPelicula->anyo }}</a>.</p>
             
                 {{-- 
                 Las listas de directores, actores y generos se generan asi: 

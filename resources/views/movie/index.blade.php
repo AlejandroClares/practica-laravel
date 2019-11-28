@@ -9,7 +9,7 @@
     crossorigin="anonymous"></script>
 
     <input type="text" id="busqueda" name="busqueda" placeholder="Buscar pelicula...">
-    <button name="buscarPelicula" onclick="buscarPelicula()">Buscar</button><br>
+    <button name="buscarPelicula" onclick="buscarPelicula()">Buscar</button>
     <script>
         // Busca las peliculas y las agrega en la caja de peliculas
         function buscarPelicula(){

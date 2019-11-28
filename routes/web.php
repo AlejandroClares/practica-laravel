@@ -22,9 +22,11 @@ Route::resource('user', 'UserController');
 // Peliculas REST
 Route::get('movie/delete/{id}', 'MovieController@destroy')->name('movie.delete');
 Route::get('movie/search/{id}', 'MovieController@search')->name('movie.search');
+Route::get('movie/searchYear/{id}', 'MovieController@searchYear')->name('movie.searchYear');
 Route::get('movie/searchDirector/{id}', 'MovieController@searchDirector')->name('movie.searchDirector');
 Route::get('movie/searchActor/{id}', 'MovieController@searchActor')->name('movie.searchActor');
 Route::get('movie/searchGender/{id}', 'MovieController@searchGender')->name('movie.searchGender');
+
 Route::resource('movie', 'MovieController');
 
 // Generos REST

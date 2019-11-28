@@ -28,7 +28,7 @@
                 {{-- Todos los campos seran rellenados si se encuentran datos de una pelicula --}}
                 @csrf
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required value="{{$datosPelicula->nombre ?? ''}}"><br>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required value="{{$datosPelicula->nombre ?? ''}}"><br>
                 {{-- El campo de la portada solo es obligatorio para la insercion, no para la modificacion --}}
                 <label for="portada">Portada</label>
                 @isset($datosPelicula)
@@ -37,16 +37,16 @@
                     <input type="file" id="portada" name="portada" required><br>
                 @endisset
                 <label for="sinopsis">Sinopsis</label>
-                <textarea id="portada" rows="4" maxlength="1000" name="sinopsis" required>{{$datosPelicula->sinopsis ?? ''}}</textarea><br>
+                <textarea id="portada" rows="4" maxlength="1000" name="sinopsis" placeholder="Descripción..." required>{{$datosPelicula->sinopsis ?? ''}}</textarea><br>
                 <label for="url_trailer">Dirección URL del trailer</label>
-                <input type="url" id="url_trailer" name="url_trailer" required value="{{$datosPelicula->url_trailer ?? ''}}"><br>
+                <input type="url" id="url_trailer" name="url_trailer" placeholder="https://" required value="{{$datosPelicula->url_trailer ?? ''}}"><br>
                 <div class="formNumberMovie">
-                    <label for="duracion">Duración</label>
-                    <input type="number" id="duracion" name="duracion" required value="{{$datosPelicula->duracion ?? ''}}"><br>
+                    <label for="duracion">Duración (Minutos)</label>
+                    <input type="number" id="duracion" name="duracion" placeholder="90" required value="{{$datosPelicula->duracion ?? ''}}"><br>
                 </div>
                 <div class="formNumberMovie">
                     <label for="anyo">Año</label>
-                    <input type="number" id="anyo" name="anyo" required value="{{$datosPelicula->anyo ?? ''}}"><br>
+                    <input type="number" id="anyo" name="anyo" placeholder="2019" required value="{{$datosPelicula->anyo ?? ''}}"><br>
                 </div>
 
                 {{-- Lista de generos --}}

@@ -206,6 +206,22 @@ class MovieController extends Controller
     }
 
     /**
+     * Busqueda de peliculas segun el anyo
+     *
+     * @param  int  $year
+     * @return \Illuminate\Http\Response
+     */
+    public function searchYear($year){
+        
+        $data['datosPeliculas'] = DB::table('peliculas')
+        ->where('peliculas.anyo', '=', $year)
+        ->select('peliculas.*')
+        ->get();
+    
+        return view('movie/index', $data);
+    }
+
+    /**
      * Busqueda de peliculas donde participe el director
      *
      * @param  int  $id

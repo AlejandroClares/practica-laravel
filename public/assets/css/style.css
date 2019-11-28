@@ -32,6 +32,7 @@ nav .adminTools {
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 5px grey;
+    
 }
 
 .movie .containerPortada {
@@ -95,6 +96,7 @@ article .showContainerMovieImage {
     margin: 5px;
     border-radius: 5px;
     box-shadow: 5px 5px grey;
+    border: 1px solid black;
 }
 
 article .showContainerMovieImage img{
