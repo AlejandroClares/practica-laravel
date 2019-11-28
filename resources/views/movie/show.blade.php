@@ -22,12 +22,12 @@
                 @if(count($datosDirector) > 0)
                     <p><span>Directores:</span> 
                     @for ($i = 0; $i < count($datosDirector)-1; $i++)
-                        {{ $datosDirector[$i]->nombre }},
+                        <a href="{{ route('movie.searchDirector', $datosDirector[$i]->id) }}">{{ $datosDirector[$i]->nombre }}</a>,
                         @if ($i == count($datosDirector)-2)
                             @break
                         @endif
                     @endfor
-                    {{ $datosDirector[count($datosDirector)-1]->nombre }}.
+                    <a href="{{ route('movie.searchDirector', $datosDirector[count($datosDirector)-1]->id) }}">{{ $datosDirector[count($datosDirector)-1]->nombre }}</a>.
                     </p>
                 @endif
 
@@ -35,12 +35,12 @@
                 @if(count($datosActor) > 0)
                     <p><span>Actores:</span> 
                     @for ($i = 0; $i < count($datosActor)-1; $i++)
-                        {{ $datosActor[$i]->nombre }},
+                    <a href="{{ route('movie.searchActor', $datosActor[$i]->id) }}">{{ $datosActor[$i]->nombre }}</a>,
                         @if ($i == count($datosActor)-2)
                             @break
                         @endif
                     @endfor
-                    {{ $datosActor[count($datosActor)-1]->nombre }}.
+                    <a href="{{ route('movie.searchActor', $datosActor[count($datosActor)-1]->id) }}">{{ $datosActor[count($datosActor)-1]->nombre }}</a>.
                     </p>
                 @endif
 
@@ -48,12 +48,12 @@
                 @if(count($datosGenero) > 0)
                     <p><span>Géneros:</span> 
                     @for ($i = 0; $i < count($datosGenero)-1; $i++)
-                        {{ $datosGenero[$i]->nombre }},
+                        <a href="{{ route('movie.searchGender', $datosGenero[$i]->id) }}">{{ $datosGenero[$i]->nombre }}</a>,
                         @if ($i == count($datosGenero)-2)
                             @break
                         @endif
                     @endfor
-                    {{ $datosGenero[count($datosGenero)-1]->nombre }}.
+                    <a href="{{ route('movie.searchGender', $datosGenero[count($datosGenero)-1]->id) }}">{{ $datosGenero[count($datosGenero)-1]->nombre }}</a>.
                     </p>
                 @endif
             </div>

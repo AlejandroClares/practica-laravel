@@ -3,10 +3,41 @@
 @section('title', 'Laravel - Peliculas')
 
 @section('main')
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+    <input type="text" id="busqueda" name="busqueda" placeholder="Buscar pelicula...">
+    <button name="buscarPelicula" onclick="buscarPelicula()">Buscar</button><br>
+    <script>
+        // Busca las peliculas y las agrega en la caja de peliculas
+        function buscarPelicula(){
+            var criterio = $('#busqueda').val();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){ 
+                    var dom_containerMovies = $(".containerMovies");
+                    $(dom_containerMovies).empty();
+                    if(xhttp.responseText == 0){
+                        $(dom_containerMovies).append("<h2>No se encontraron resultados</h2>");
+                    } else {
+                        $(dom_containerMovies).append(xhttp.responseText);
+                    }
+                    
+                    
+                }
+            }
+            var direccion = "http://localhost:3000/movie/search/"+criterio;
+            xhttp.open("GET", direccion, true);
+            xhttp.send();
+        }
+    </script>
+
     @auth
     <a href="{{route('movie.create')}}">Insertar nueva pelicula</a><br>    
     @endauth
-
+        <div class="containerMovies">
         @foreach ($datosPeliculas as $movie)
             <article class="movie">
                 <div class="containerPortada">
@@ -26,11 +57,8 @@
                 </div>
             </article>
         @endforeach
+        </div>
         @auth
-                <script
-                src="https://code.jquery.com/jquery-3.4.1.js"
-                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-                crossorigin="anonymous"></script>
             <script>
                 $(function() {
                     $(".delete").click(function(){

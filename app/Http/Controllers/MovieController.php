@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 //Models
 use App\Peliculas;
@@ -15,8 +16,8 @@ class MovieController extends Controller
 
     public function __construct(){
         
-        // Los invitados solo pueden ver index y show
-        $this->middleware("auth")->except("index", "show");
+        // Los invitados solo pueden usar los metodos especificados.
+        $this->middleware("auth")->except("index", "show", "search", "searchDirector", "searchActor", "searchGender");
         
     }
 
@@ -25,7 +26,7 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($movies = null)
     {
         // Se obtienen todas las peliculas
         $data['datosPeliculas'] = Peliculas::all();
@@ -182,5 +183,80 @@ class MovieController extends Controller
 
         // Se devuelve 1 para que ajax sepa que a funcionado.
         echo "1";
+    }
+
+    /**
+     * Devuelve las peliculas segun el titulo
+     *
+     * @param  string  $criterio
+     * @return \Illuminate\Http\Response
+     */
+    public function search($criterio){
+        
+        $data['datosPeliculas'] = DB::table('peliculas')
+        ->where('peliculas.nombre', 'like', '%'.$criterio.'%')
+        ->select('peliculas.*')
+        ->get();
+        
+        if(isset($data['datosPeliculas'][0])){
+            return view('movie/viewsAjax/moviesSearch', $data);
+        } else {
+            echo "0";
+        }
+    }
+
+    /**
+     * Busqueda de peliculas donde participe el director
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchDirector($id){
+
+        //Busca la pelicula en la que trabaje el id del director.
+        $data['datosPeliculas'] = DB::table('peliculas')
+        ->join('personas_directores', 'peliculas.id', '=', 'personas_directores.peliculas_id')
+        ->join('personas', 'personas_directores.personas_id', '=', 'personas.id')
+        ->where('personas.id', '=', $id)
+        ->select('peliculas.*')
+        ->get();
+    
+        return view('movie/index', $data);
+    }
+    
+    /**
+     * Busqueda de peliculas donde participe el actor
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchActor($id){
+        
+        $data['datosPeliculas'] = DB::table('peliculas')
+        ->join('personas_actores', 'peliculas.id', '=', 'personas_actores.peliculas_id')
+        ->join('personas', 'personas_actores.personas_id', '=', 'personas.id')
+        ->where('personas.id', '=', $id)
+        ->select('peliculas.*')
+        ->get();
+    
+        return view('movie/index', $data);
+    }
+
+    /**
+     * Busqueda de peliculas donde contenga el genero
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchGender($id){
+        
+        $data['datosPeliculas'] = DB::table('peliculas')
+        ->join('generos_peliculas', 'peliculas.id', '=', 'generos_peliculas.peliculas_id')
+        ->join('generos', 'generos_peliculas.generos_id', '=', 'generos.id')
+        ->where('generos.id', '=', $id)
+        ->select('peliculas.*')
+        ->get();
+    
+        return view('movie/index', $data);
     }
 }
