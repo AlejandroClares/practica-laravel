@@ -70,7 +70,9 @@
                         xhttp.onreadystatechange = function(){
                             if(this.readyState == 4 && this.status == 200){ 
                                 if (xhttp.responseText == 1) {
-                                    $(domElement).parent().parent().remove();
+                                    $(domElement.parent().parent()).fadeOut(500, function(){
+                                        $(domElement).parent().parent().remove();
+                                    });
                                 } else {
                                     alert("Algo fallo!");
                                 }
