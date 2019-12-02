@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonasTableSeeder::class);
         $this->call(PersonasDirectoresTableSeeder::class);
         $this->call(PersonasActoresTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }

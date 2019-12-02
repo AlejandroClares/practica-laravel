@@ -98,10 +98,21 @@ class GenderController extends Controller
         return redirect()->route('gender.index');
     }
 
+    /**
+     * Muestra la vista generada para la ventana modal 
+     * 
+     * @return view
+     */
     public function modalForm(){
         echo view("gender.modal.createModal");
     }
 
+    /**
+     * Guarda el genero y devuelve los datos actualizados de generos.
+     * 
+     * @param  Request $r
+     * @return view
+     */
     public function modalFormStore(Request $r){
         $gender = new Generos();
         $gender->nombre = $r->nombre;

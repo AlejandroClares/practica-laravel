@@ -119,10 +119,21 @@ class PersonController extends Controller
         return redirect()->route('person.index');
     }
 
+    /**
+     * Muestra la vista generada para la ventana modal 
+     * 
+     * @return view
+     */
     public function modalForm(){
         echo view("person.modal.createModal");
     }
 
+    /**
+     * Guarda la persona y devuelve los datos actualizados de personas.
+     * 
+     * @param  Request $r
+     * @return view
+     */
     public function modalFormStore(Request $r){
         $gender = new Personas();
         $gender->nombre = $r->nombre;
