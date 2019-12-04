@@ -40,6 +40,6 @@ Route::post('person/modalForm/store', 'PersonController@modalFormStore')->name('
 Route::resource('person', 'PersonController');
 
 // Rutas de login
-// Auth::routes(['register' => false]);
-Auth::routes();
+Auth::routes(['register' => false]);
+// Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
